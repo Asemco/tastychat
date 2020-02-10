@@ -1,0 +1,13 @@
+<div [ngClass]="{'owner': message.username == user.username}" class="message">
+    <h3>{{message.username}}</h3>
+    <p>{{message.message}}</p>
+    <h5>{{message.date_created | date: 'medium'}}</h5>
+    <span>{{message.likes}}</span>
+    <button 
+    mat-icon-button 
+    [ngClass]="{'liked': user.username == message.liked}" 
+    (click)="expressFeelings(message.id)" 
+    [disabled]="isDisabled || !user.username">
+        <mat-icon class="likecon">thumb_up</mat-icon>
+    </button>
+</div>

@@ -1,4 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
-html, body { height: 100%; }
-body { margin: 0; font-family: 'Exo', sans-serif !important; }
+html, body { 
+    height: 100%; 
+    font-family: 'Exo', sans-serif;
+    font-weight: 400;
+}
+
+.liked {
+    color: green;
+}
+
+body { margin: 0; }
+
+
+// TODO: Animate for "likecon"
+

@@ -1,47 +1,89 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Messages } from '../../models/messages';
+import { HttpService } from './http.service';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessagesService {
-  private messages: Messages[];
+  public messages: Messages[];
 
-  constructor() {
-    this.messages = [
-      { id: 1, likes: 0, date_created: "", liked: false, message: "This is the message that needs to be delivered at the utmost importance."},
-      { id: 2, likes: 0, date_created: "", liked: false, message: "This is the message that needs to be delivered at the earliest if possible please and thanks."},
-      { id: 3, likes: 0, date_created: "", liked: false, message: "This is the message that needs to be delivered whenever you want really."},
-      { id: 4, likes: 0, date_created: "", liked: false, message: "This is the message that needs to be deleted."},
-      { id: 5, likes: 0, date_created: "", liked: false, message: "This is the message that doesn't need to be delivered at all."},
-      { id: 6, likes: 0, date_created: "", liked: false, message: "This is the message."},
-      { id: 7, likes: 0, date_created: "", liked: false, message: "This message is last."},
-    ];
+  constructor(
+    private httpService: HttpService,
+    private userService: UserService
+  ) {
+    this.messages = [];
+  }
 
-   }
+  retrieveAuthMessages() {
+    this.httpService.get('auth/messages', null).subscribe(
+      success => {
+        if (success[0])
+          this.messages = Object.assign(this.messages, success[1]);
+      },
+      failure => {
+        console.log("Failed because reasons: ", failure);
+      }
+    )
+  }
 
-   getMessages() {
-     return this.messages;
-   }
+  retrieveMessages() {
+    this.httpService.get('api/messages', null).subscribe(
+      success => {
+        if (success[0])
+          this.messages = Object.assign(this.messages, success[1]);
+      },
+      failure => {
+        console.log("Failed because reasons: ", failure);
+      }
+    )
+  }
 
-   getMessage(id: number) {
-     return this.messages.find(message => message.id == id);
-   }
+  sendMessage(message) {
+    this.httpService.post('auth/create-message', message).subscribe(
+      success => {
+        if (success[0])
+          this.messages = Object.assign(this.messages, [...this.messages, success[1]]);
+      },
+      failure => {
+        console.log("Failed because reasons: ", failure);
+      }
+    )
+  }
 
-   getLikedMessages() {
-     // Returns the messages that the current user has liked.
-     // Whether the user liked the message comes from the backend so this is probably useless
-     return 1;
-   }
+  // Since it's used to unlike as well, it's called express feelings.
+  expressFeelings(messageId: number) {
+    this.httpService.post('auth/express-feelings', {messageId}).subscribe(
+      success => {
+        if (success[0]) {
+          this.messages = Object.assign(this.messages, ...this.messages);
+        }
+      },
+      failure => {
+        console.log("Failed because reasons: ", failure);
+      }
+    )
+  }
 
-   likeMessage(messageId) {
-    // Get index of message clicked on
-    let index = this.messages.findIndex(message => message.id == messageId);
-    // Switch its liked status
-    this.messages[index].liked = !this.messages[index].liked;
-    // Update the database to reflect the current status.
-    if (this.messages[index].liked)
-      return 1;
-    return 0;
-   }
+  verifyMessage(messages: Messages): boolean {
+    return messages.message.length > 0 && messages.message.length <= 1234;
+  }
+
+  getMessages(isLoggedIn) {
+    if (isLoggedIn)
+      return this.retrieveAuthMessages();
+    else
+      return this.retrieveMessages();
+  }
+
+  getMessage(id: number) {
+    return this.messages.find(message => message.id == id);
+  }
+
+  getLikedMessages() {
+    // Returns the messages that the current user has liked.
+    // Whether the user liked the message comes from the backend so this is probably useless
+    return 1;
+  }
 }

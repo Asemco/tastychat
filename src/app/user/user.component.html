@@ -1,1 +1,49 @@
-<p>user works!</p>
+<div fxLayout="column"  fxFlex="75" fxFlexOffset="12.5%" class="holder">
+  <form fxLayout="column" (ngSubmit)="login()">
+    <mat-form-field>
+      <mat-icon matPrefix>perm_identity</mat-icon>
+      <input
+      [(ngModel)]="user.username"
+      matNativeControl 
+      placeholder="Username"
+      id="username"
+      name="username" 
+      type="text" 
+      maxlength="45"
+      class="validate" />
+    </mat-form-field>
+    
+    <mat-form-field>
+      <mat-icon matPrefix>lock_open</mat-icon>
+      <input
+      [(ngModel)]="user.password"
+      matNativeControl
+      placeholder="Password"
+      id="password" 
+      name="password"
+      type="password" 
+      maxlength="255"
+      class="validate" />
+    </mat-form-field>
+  
+    <button 
+    mat-raised-button 
+    type="submit"
+    color="{{submitted ? '' : 'primary'}}"
+    [disabled]="submitted">
+      {{submittedLogin ? "Logging in..." : "Login"}}
+      <mat-icon>vpn_key</mat-icon>
+    </button>
+  </form>
+  <br/>
+  <button 
+    mat-raised-button 
+    type="button"
+    color="{{submitted ? '' : 'primary'}}"
+    (click)="register()" 
+    [disabled]="submitted">
+      {{submittedRegister ? "Registering..." : "Register"}}
+      <mat-icon>lock</mat-icon>
+  </button>
+  
+</div>

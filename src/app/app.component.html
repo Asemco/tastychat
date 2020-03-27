@@ -4,15 +4,15 @@
   fxLayoutAlign="space-around center"
   gdArea="header">
   <div>
-
+    <div><img style="max-width: 80%; min-width: 20%; min-height:20%;" src="../assets/MySmartFUTURE.jpg" alt="ESIC" /></div>
   </div>
-    <div>
-      <h2><a [routerLink]="['/']" class="title">Tastychat</a></h2>
-    </div>
-    <div>
-        <a mat-raised-button [routerLink]="['/login']" *ngIf="!loggedIn()">Login</a>
-        <a mat-raised-button (click)="logout()" *ngIf="loggedIn()">Logout, {{user.username}}</a>
-    </div>
-  </mat-toolbar>
+  <div>
+    <h2><a [routerLink]="['/']" class="title">Assist My Smart Future</a></h2>
+  </div>
+  <div>
+      <a mat-raised-button [routerLink]="['/login']" *ngIf="!loggedIn()">Login</a>
+      <a mat-raised-button (click)="logout()" *ngIf="loggedIn()">Logout, {{user.username}}</a>
+  </div>
+</mat-toolbar>
 
 <router-outlet></router-outlet>

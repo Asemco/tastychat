@@ -9,8 +9,7 @@ import { catchError } from "rxjs/operators";
   providedIn: 'root'
 })
 export class HttpService {
-  // private api_url: string = "https://krhule-taylorjavascript.herokuapp.com/api/";
-  private api_url: string = "/"; // Turns out, we're right at home.
+  private api_url: string = "https://15.223.58.64:3000/"; 
 
   constructor(
     private http: HttpClient

@@ -66,7 +66,8 @@ export class UserService {
        }
      },
      failure => {
-       return [false, "Couldn't logout.  Please check your network, then contact support"];
+      this.removeUser();
+       return [false, "Couldn't logout.  Please check your network, then contact support.  The site believes you're logged out though."];
      }
    )
  }

@@ -1,14 +1,16 @@
 <div fxLayout="column"  fxFlex="75" fxFlexOffset="12.5%" class="holder">
-  <form fxLayout="column" (ngSubmit)="login()">
+  <form #loginForm="ngForm" fxLayout="column" (ngSubmit)="login()">
     <mat-form-field>
       <mat-icon matPrefix>perm_identity</mat-icon>
       <input
       [(ngModel)]="user.username"
       matNativeControl 
+      required
       placeholder="Username"
       id="username"
       name="username" 
       type="text" 
+      minlength="2"
       maxlength="45"
       class="validate" />
     </mat-form-field>
@@ -18,10 +20,12 @@
       <input
       [(ngModel)]="user.password"
       matNativeControl
+      required
       placeholder="Password"
       id="password" 
       name="password"
       type="password" 
+      minlength="6"
       maxlength="255"
       class="validate" />
     </mat-form-field>
@@ -30,7 +34,7 @@
     mat-raised-button 
     type="submit"
     color="{{submitted ? '' : 'primary'}}"
-    [disabled]="submitted">
+    [disabled]="submitted || !loginForm.valid">
       {{submittedLogin ? "Logging in..." : "Login"}}
       <mat-icon>vpn_key</mat-icon>
     </button>
@@ -41,7 +45,7 @@
     type="button"
     color="{{submitted ? '' : 'primary'}}"
     (click)="register()" 
-    [disabled]="submitted">
+    [disabled]="submitted || !loginForm.valid">
       {{submittedRegister ? "Registering..." : "Register"}}
       <mat-icon>lock</mat-icon>
   </button>

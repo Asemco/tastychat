@@ -1,0 +1,5 @@
+<cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+    <div *ngFor="let form of forms" class="example-item">
+        <app-form [form]="form" [user]="user"></app-form>
+    </div>
+</cdk-virtual-scroll-viewport>

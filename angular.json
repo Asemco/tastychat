@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "KRhule-TaylorJavascript": {
+    "smartsaver_assist": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/KRhule-TaylorJavascript",
+            "outputPath": "dist/smartsaver_assist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -67,18 +67,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "KRhule-TaylorJavascript:build"
+            "browserTarget": "smartsaver_assist:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "KRhule-TaylorJavascript:build:production"
+              "browserTarget": "smartsaver_assist:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "KRhule-TaylorJavascript:build"
+            "browserTarget": "smartsaver_assist:build"
           }
         },
         "test": {
@@ -116,16 +116,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "KRhule-TaylorJavascript:serve"
+            "devServerTarget": "smartsaver_assist:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "KRhule-TaylorJavascript:serve:production"
+              "devServerTarget": "smartsaver_assist:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "KRhule-TaylorJavascript"
+  "defaultProject": "smartsaver_assist"
 }

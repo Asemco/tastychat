@@ -5,10 +5,10 @@ import { ChatappComponent } from './chatapp/chatapp.component';
 
 
 const routes: Routes = [
-  { path: 'tasty', component: ChatappComponent },
+  { path: 'portal', component: ChatappComponent },
   { path: 'login', component: UserComponent },
   { path: 'register', component: UserComponent },
-  { path: '', redirectTo: '/tasty', pathMatch: 'full' }, 
+  { path: '', redirectTo: '/portal', pathMatch: 'full' }, 
 ];
 
 @NgModule({

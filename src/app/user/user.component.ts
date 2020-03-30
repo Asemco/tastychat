@@ -39,7 +39,7 @@ export class UserComponent {
       }
       this.submitted = false;
       this.submittedRegister = false;
-    }, 700);
+    }, 2000);
     
   }
   
@@ -64,7 +64,7 @@ export class UserComponent {
       }
       this.submitted = false;
       this.submittedLogin = false;
-    }, 700);
+    }, 2000);
 
   }
 
